@@ -1,0 +1,54 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+    <!-- Date -->
+    <mat-form-field appearance="fill">
+        <mat-label>Date:</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date" [min]="minDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="myForm.get('date')!.invalid && (myForm.get('date')!.dirty || myForm.get('date')!.touched)">
+            Please provide a date.
+        </mat-error>
+    </mat-form-field>
+    <!-- Job Title -->
+    <mat-form-field appearance="fill">
+        <mat-label>Job Title</mat-label>
+        <input matInput formControlName="jobTitle">
+        <mat-error
+            *ngIf="myForm.get('jobTitle')!.invalid && (myForm.get('jobTitle')!.dirty || myForm.get('jobTitle')!.touched)">
+            Please provide a job title.
+        </mat-error>
+    </mat-form-field>
+    <!-- Department -->
+    <mat-form-field appearance="fill">
+        <mat-label>Department</mat-label>
+        <mat-select name="department" formControlName="department">
+            <mat-option *ngFor="let department of departments" [value]="department.value">
+                {{department.value}}
+            </mat-option>
+        </mat-select>
+        <mat-error
+            *ngIf="myForm.get('department')!.invalid && (myForm.get('department')!.dirty || myForm.get('department')!.touched)">
+            Please provide a department.
+        </mat-error>
+    </mat-form-field>
+    <!-- Manager Name -->
+    <mat-form-field appearance="fill">
+        <mat-label>Hiring Manager Name</mat-label>
+        <input matInput formControlName="managerName">
+        <mat-error
+            *ngIf="myForm.get('managerName')!.invalid && (myForm.get('managerName')!.dirty || myForm.get('managerName')!.touched)">
+            Please provide the name of the Hiring Manager.
+        </mat-error>
+    </mat-form-field>
+    <!-- Manager Email -->
+    <mat-form-field appearance="fill">
+        <mat-label>Hiring Manager Name</mat-label>
+        <input matInput formControlName="managerEmail">
+        <mat-error
+            *ngIf="myForm.get('managerEmail')!.invalid && (myForm.get('managerEmail')!.dirty || myForm.get('managerEmail')!.touched)">
+            Please provide the Email of the Hiring Manager.
+        </mat-error>
+    </mat-form-field>
+    <button mat-button type="submit" [disabled]="myForm.invalid">Submit</button>
+</form>
