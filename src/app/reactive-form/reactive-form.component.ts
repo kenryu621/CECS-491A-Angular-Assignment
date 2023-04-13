@@ -5,21 +5,32 @@ interface Department {
   value: string;
 }
 
+export interface FormInput {
+  subNo: number;
+  date: string;
+  jobTitle: string;
+  department: string;
+  managerName: string;
+  managerEmail: string;
+}
+
 @Component({
   selector: 'app-reactive-form',
   templateUrl: './reactive-form.component.html',
   styleUrls: ['./reactive-form.component.css']
 })
 export class ReactiveFormComponent implements OnInit {
-  myForm!: FormGroup;
+  my_react_form!: FormGroup;
   minDate: Date;
+  submissionNumber = 0;
+  FormData!: FormInput;
 
   constructor(private fb: FormBuilder) {
     this.minDate = new Date();
   }
 
   ngOnInit() {
-    this.myForm = this.fb.group({
+    this.my_react_form = this.fb.group({
       date: ['', Validators.required],
       jobTitle: ['', Validators.required],
       department: ['', Validators.required],
@@ -29,12 +40,7 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    console.log('Valid?', form.valid); // true or false
-    console.log('Date', form.value.date)
-    console.log('Job Title', form.value.jobTitle)
-    console.log('Department', form.value.department)
-    console.log('Hiring Manager Name', form.value.managerName)
-    console.log('Hiring Manager Email', form.value.managerEmail)
+    this.FormData = { subNo: ++this.submissionNumber, date: form.value.date.toLocaleDateString(), jobTitle: form.value.jobTitle, department: form.value.department, managerName: form.value.managerName, managerEmail: form.value.managerEmail };
   }
 
   departments: Department[] = [

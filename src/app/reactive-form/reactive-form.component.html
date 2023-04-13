@@ -1,4 +1,4 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+<form [formGroup]="my_react_form" (ngSubmit)="onSubmit(my_react_form)">
     <!-- Date -->
     <mat-form-field appearance="fill">
         <mat-label>Date:</mat-label>
@@ -6,7 +6,8 @@
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="myForm.get('date')!.invalid && (myForm.get('date')!.dirty || myForm.get('date')!.touched)">
+        <mat-error
+            *ngIf="my_react_form.get('date')!.invalid && (my_react_form.get('date')!.dirty || my_react_form.get('date')!.touched)">
             Please provide a date.
         </mat-error>
     </mat-form-field>
@@ -15,7 +16,7 @@
         <mat-label>Job Title</mat-label>
         <input matInput formControlName="jobTitle">
         <mat-error
-            *ngIf="myForm.get('jobTitle')!.invalid && (myForm.get('jobTitle')!.dirty || myForm.get('jobTitle')!.touched)">
+            *ngIf="my_react_form.get('jobTitle')!.invalid && (my_react_form.get('jobTitle')!.dirty || my_react_form.get('jobTitle')!.touched)">
             Please provide a job title.
         </mat-error>
     </mat-form-field>
@@ -28,7 +29,7 @@
             </mat-option>
         </mat-select>
         <mat-error
-            *ngIf="myForm.get('department')!.invalid && (myForm.get('department')!.dirty || myForm.get('department')!.touched)">
+            *ngIf="my_react_form.get('department')!.invalid && (my_react_form.get('department')!.dirty || my_react_form.get('department')!.touched)">
             Please provide a department.
         </mat-error>
     </mat-form-field>
@@ -37,18 +38,19 @@
         <mat-label>Hiring Manager Name</mat-label>
         <input matInput formControlName="managerName">
         <mat-error
-            *ngIf="myForm.get('managerName')!.invalid && (myForm.get('managerName')!.dirty || myForm.get('managerName')!.touched)">
+            *ngIf="my_react_form.get('managerName')!.invalid && (my_react_form.get('managerName')!.dirty || my_react_form.get('managerName')!.touched)">
             Please provide the name of the Hiring Manager.
         </mat-error>
     </mat-form-field>
     <!-- Manager Email -->
     <mat-form-field appearance="fill">
-        <mat-label>Hiring Manager Name</mat-label>
+        <mat-label>Hiring Manager Email</mat-label>
         <input matInput formControlName="managerEmail">
         <mat-error
-            *ngIf="myForm.get('managerEmail')!.invalid && (myForm.get('managerEmail')!.dirty || myForm.get('managerEmail')!.touched)">
+            *ngIf="my_react_form.get('managerEmail')!.invalid && (my_react_form.get('managerEmail')!.dirty || my_react_form.get('managerEmail')!.touched)">
             Please provide the Email of the Hiring Manager.
         </mat-error>
     </mat-form-field>
-    <button mat-button type="submit" [disabled]="myForm.invalid">Submit</button>
+    <button mat-button type="submit" [disabled]="my_react_form.invalid">Submit</button>
 </form>
+<app-form-table [FormDataFromParent]="FormData"></app-form-table>
